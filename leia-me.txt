@@ -1,0 +1,11 @@
+npm install express --save
+npm install sequelize --save
+npm install mysql2 --save
+npm install body-parser --save
+npm install ejs --save
+
+npm install --save slugify
+
+
+Banco de dados
+alter user "root"@"localhost" identified with mysql_native_password by "J6t2hybt26@"
