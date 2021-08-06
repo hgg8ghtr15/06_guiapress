@@ -1,0 +1,39 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navebar.ejs") %>
+<body>
+    <div class="container">
+        <span class="d-flex justify-content-between">
+            <h3 class="">Artigos</h3>
+            <a href="/article/new" class="btn btn-primary ">ADD</a>
+        </span>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Categoria</th>
+                <th>Incluído</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% Articles.forEach(article => { %>
+                    <tr>
+                        <td><%= article.id %></td>
+                        <td><%= article.title %></td>
+                        <td><%= article.Category.title %></td>
+                        <td><%= article.createdAt %></td>
+                        <td>
+                            <a href="#" class="btn btn-info">EDITAR</a>
+                            <form method="post" class="d-inline" action="/article/deletar" onsubmit="confirmarDelecao(event, this)">
+                                <input type="hidden" name="id" value="<%= article.id %>">
+                                <button type="submit" class="btn btn-danger">-</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+<%- include("../../partials/footer.ejs") %>

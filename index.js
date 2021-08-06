@@ -45,7 +45,7 @@ app.use("/", articles_Controller)
 
 
 app.get("/", (request, response) => {
-  return response.render("index")
+  return response.render("./index")
 })
 
 app.listen(4000, ()=>{console.log("Servidor online")})
