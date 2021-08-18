@@ -17,16 +17,16 @@
             </tr>
             </thead>
             <tbody>
-                <% Articles.forEach(article => { %>
+                <% Artigles.forEach(Artigle => { %>
                     <tr>
-                        <td><%= article.id %></td>
-                        <td><%= article.title %></td>
-                        <td><%= article.Category.title %></td>
-                        <td><%= article.createdAt %></td>
+                        <td><%= Artigle.id %></td>
+                        <td><%= Artigle.title %></td>
+                        <td><%= Artigle.Category.title %></td>
+                        <td><%= Artigle.createdAt %></td>
                         <td>
-                            <a href="#" class="btn btn-info">EDITAR</a>
+                            <a href="/article/editar/<%=Artigle.id%>" class="btn btn-info">EDITAR</a>
                             <form method="post" class="d-inline" action="/article/deletar" onsubmit="confirmarDelecao(event, this)">
-                                <input type="hidden" name="id" value="<%= article.id %>">
+                                <input type="hidden" name="id" value="<%= Artigle.id %>">
                                 <button type="submit" class="btn btn-danger">-</button>
                             </form>
                         </td>

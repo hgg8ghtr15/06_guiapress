@@ -1,0 +1,73 @@
+<%- include("../../partials/header.ejs") %>
+<body>
+    <%- include("../../partials/navebar.ejs") %>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Cadastrar de Artigos</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/article/update">
+                    <div class="form-group">
+                        <label for="">Titulo do Artigo</label>
+                        <input type="hidden" name="id" value="<%= article.id%>" class="form-control">
+                        <input type="text" name="title" value="<%= article.title%>" placeholder="Titulo do Artigo" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Corpo do Artigo</label>
+                        <textarea class="form-control" name="body" id="article" cols="30" rows="10">
+                            <%- article.body %>
+                        </textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Seleciona a Categoria</label>
+                        <select name="category" id="" class="form-control">
+                        <% categorias.forEach((categoria)=>{ %>
+                            <option value="<%= categoria.id %>"> <%= categoria.title %> </option>
+                        <% }) %>
+                            <option value="<%= article.CategoryId %>" selected="selected"><%= article.Category.title %></option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary" type="submit">Atualizar</button>
+                        <a href="/article/index" class="btn btn-info">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<%- include("../../partials/footer.ejs") %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>tinymce.init(
+    {
+      language:"pt_BR",
+      selector:"#article",
+        plugins:[
+        "advlist " +
+        "autolink " +
+        "image " +
+        "lists " +
+        "print " +
+        "preview " +
+        "hr " +
+        "searchreplace " +
+        "wordcount " +
+        "fullscreen " +
+        "insertdatetime " +
+        "media " +
+        "save " +
+        "table " +
+        "paste " +
+        "emoticons "
+      ]}
+  );
+</script>
+<!--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
+<!--<script>tinymce.init({selector:'#article'});</script>-->

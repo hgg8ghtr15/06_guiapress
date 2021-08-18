@@ -7,8 +7,8 @@ const slugify = require("slugify")
 router.get('/article/index', (request, response) => {
   Article.findAll(
     {include:[{model: Category}]} //faz o join na tabela para exibir na views
-  ).then(Articles =>{
-    response.render("admin/articles/index", { Articles : Articles })
+  ).then(Artigles =>{
+    response.render("admin/articles/index", { Artigles : Artigles })
   })
 })
 
@@ -51,4 +51,32 @@ router.post("/article/deletar", (request, response) => {
 
 })
 
+router.get("/article/editar/:id", (request, response) => {
+  const {id} = request.params
+  console.log(id)
+  Article.findByPk(
+      id,
+      {include:
+          [{model: Category}]
+      }
+    ).then(article => {
+    Category.findAll().then(categorias =>{
+      return response.render("admin/articles/edit", {article:article, categorias:categorias})
+    })
+  })
+})
+
+router.post("/article/update", (request, response) =>{
+  const {id, title, body, category } =  request.body
+
+  Article.update(
+      {title:title,slug:slugify(title), body:body, CategoryId:category},
+      {where: {id:id}}
+  ).then( ()=>{
+    return response.redirect("/article/index")
+  })
+})
+
 module.exports = router
+
+// {include:[{model: Category}]}

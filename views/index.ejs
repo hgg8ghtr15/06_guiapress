@@ -1,6 +1,29 @@
 <%- include("./partials/header.ejs") %>
 <body>
     <%- include("./partials/navebar.ejs") %>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-4">Bem Vindo ao GuiaPress!</h1>
+                <p class="lead">Guia Press é uma plataforma de artigos de TI.</p>
+                <hr class="my-4">
+                <p>Crie sua conta e publique seu artigo.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">AQUI!</a>
+                </p>
+            </div>
+
+            <% Artigles.forEach( artigo =>{ %>
+                <div class="card">
+                    <div class="card-header">
+                        <h3><%= artigo.title %></h3>
+                    </div>
+                    <div class="card-body">
+                        <a href="/<%= artigo.slug %> " class="btn btn-primary">Ler Artigo</a>
+                    </div>
+                </div>
+                <br>
+            <% }) %>
+        </div>
     <p class="bg-danger"></p>
 </body>
 <%- include("./partials/footer.ejs") %>

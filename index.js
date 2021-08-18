@@ -45,7 +45,45 @@ app.use("/", articles_Controller)
 
 
 app.get("/", (request, response) => {
-  return response.render("./index")
+  const admin = "admin"
+  Article.findAll(
+    {
+      order:[
+        ["id", "DESC"]
+      ]
+    }
+  ).then(Artigles => {
+    Category.findAll().then(Categorias => {
+      return response.render("./index", {Artigles : Artigles, Categorias : Categorias})
+    })
+  })
 })
+
+app.get("/:slug", (request, response) => {
+  const {slug} = request.params
+  Article.findOne({
+    where:{slug:slug}
+  }).then(Artigle => {
+    if(Artigle != undefined){
+      return response.render("./artigle", { Artigle : Artigle })
+    }else{
+      return response.redirect("/")
+    }
+  })
+})
+
+app.get("/listar_categoria/:slug", (request, response)=>{
+  const {slug} = request.params
+  Article.findAll({
+    where:{CategoryId:slug}
+    }
+  ).then(Artigles => {
+    Category.findAll().then(Categorias => {
+      return response.render("./index", {Artigles : Artigles, Categorias : Categorias})
+    })
+  })
+})
+
+
 
 app.listen(4000, ()=>{console.log("Servidor online")})
