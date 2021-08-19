@@ -1,0 +1,41 @@
+<%- include("../../partials/header.ejs") %>
+
+<body>
+<%- include("../../partials/navebar.ejs") %>
+<div class="container">
+    <% resultado.Artigles.rows.forEach( artigo =>{ %>
+        <div class="card">
+            <div class="card-header">
+                <h3><%= artigo.title %></h3>
+            </div>
+            <div class="card-body">
+                <a href="/<%= artigo.slug %> " class="btn btn-primary">Ler Artigo</a>
+            </div>
+        </div>
+        <br>
+    <% }) %>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-between">
+            <li class="page-item">
+                <% if (resultado.num == "2" || resultado.num == "1" || resultado.num == "0"){%>
+                    <a class="page-link" href="/"><<< Primeira </a>
+                <% }else { %>
+                    <a class="page-link" href="/article/page/<%= resultado.num - 1 %>"><<< Anterior </a>
+                <% } %>
+            </li>
+
+<!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+
+            <% if (resultado.next == true) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/article/page/<%= resultado.num + 1 %>">Próxima >>></a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</div>
+<p class="bg-danger"></p>
+</body>
+<%- include("../../partials/footer.ejs") %>

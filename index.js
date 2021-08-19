@@ -50,7 +50,8 @@ app.get("/", (request, response) => {
     {
       order:[
         ["id", "DESC"]
-      ]
+      ],
+      limit:2
     }
   ).then(Artigles => {
     Category.findAll().then(Categorias => {

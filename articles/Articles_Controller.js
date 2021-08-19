@@ -77,6 +77,58 @@ router.post("/article/update", (request, response) =>{
   })
 })
 
+
+router.get("/article/page/:num", (request, response) =>{
+  const {num} = request.params
+  let offset = 0
+
+  if(num.isNaN || num == 1){
+    offset = 0
+
+  }else {
+    offset = (parseInt(num) -1 ) * 2
+  }
+
+  Article.findAndCountAll(
+    {
+      limit:2,
+      offset:offset,
+      include:[{model: Category}]
+      }
+    ).then(Artigles =>{
+
+      let next;
+      if (offset + 2 >= Artigles.count){
+        next = false
+      }else{
+        next = true
+      }
+      //
+      // console.log(Artigles.count)
+      // let total_paginas =  parseInt(Artigles.count / 2)
+      // let paginas = []
+      // for (let i = 0; i < total_paginas; i++){
+      //   paginas[i] = i+1
+      // }
+      // console.log(paginas)
+
+      var resultado = {
+        proximo:parseInt(num)+1,
+        anterior:parseInt(num)-1,
+        num:parseInt(num),
+        next:next,
+        Artigles:Artigles
+      }
+
+      Category.findAll().then(Categorias =>{
+
+      return response.render("admin/articles/page", { resultado:resultado, Categorias:Categorias})
+      // return response.json(resultado)
+      })
+  })
+
+})
+
 module.exports = router
 
 // {include:[{model: Category}]}

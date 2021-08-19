@@ -1,29 +1,36 @@
 <%- include("./partials/header.ejs") %>
 <body>
     <%- include("./partials/navebar.ejs") %>
-        <div class="container">
-            <div class="jumbotron">
-                <h1 class="display-4">Bem Vindo ao GuiaPress!</h1>
-                <p class="lead">Guia Press é uma plataforma de artigos de TI.</p>
-                <hr class="my-4">
-                <p>Crie sua conta e publique seu artigo.</p>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">AQUI!</a>
-                </p>
-            </div>
-
-            <% Artigles.forEach( artigo =>{ %>
-                <div class="card">
-                    <div class="card-header">
-                        <h3><%= artigo.title %></h3>
-                    </div>
-                    <div class="card-body">
-                        <a href="/<%= artigo.slug %> " class="btn btn-primary">Ler Artigo</a>
-                    </div>
-                </div>
-                <br>
-            <% }) %>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Bem Vindo ao GuiaPress!</h1>
+            <p class="lead">Guia Press é uma plataforma de artigos de TI.</p>
+            <hr class="my-4">
+            <p>Crie sua conta e publique seu artigo.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">AQUI!</a>
+            </p>
         </div>
-    <p class="bg-danger"></p>
+
+        <% Artigles.forEach( artigo =>{ %>
+            <div class="card">
+                <div class="card-header">
+                    <h3><%= artigo.title %></h3>
+                </div>
+                <div class="card-body">
+                    <a href="/<%= artigo.slug %> " class="btn btn-primary">Ler Artigo</a>
+                </div>
+            </div>
+            <br>
+        <% }) %>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link" href="/article/page/2">Próxima >>></a>
+                </li>
+            </ul>
+        </nav>
+        <br>
+    </div>
 </body>
 <%- include("./partials/footer.ejs") %>
