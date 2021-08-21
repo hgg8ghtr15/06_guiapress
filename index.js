@@ -4,11 +4,13 @@ const connection = require('./database/database')
 
 const categories_Controller = require('./categories/Categories_Controller')
 const articles_Controller = require('./articles/Articles_Controller')
+const usuario_Controller = require("./user/user_Controller")
 
 const app = express()
 
 const Article = require('./articles/Article')
 const Category = require("./categories/Category")
+const Usuario = require('./user/user')
 
 /**
  * view engine
@@ -42,6 +44,7 @@ connection
 * */
 app.use("/", categories_Controller)
 app.use("/", articles_Controller)
+app.use("/", usuario_Controller)
 
 
 app.get("/", (request, response) => {

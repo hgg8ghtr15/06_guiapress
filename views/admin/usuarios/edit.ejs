@@ -1,0 +1,38 @@
+<%- include("../../partials/header.ejs") %>
+<body>
+<%- include("../../partials/navebar.ejs") %>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Editar de Usuários</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/admin/usuario/update">
+                <input type="hidden" name="id" value="<%=Usuario.id%>">
+                <input type="email" name="email" class="form-control" required="required" placeholder="E-mail do usuario" value="<% if ( typeof Usuario.email != 'undefined'){%><%=Usuario.email%><%}%>" >
+                <br>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary">Atualizar</button>
+                    <a href="/admin/usuarios" class="btn btn-info">Voltar</a>
+                </div>
+
+                <% if (typeof msg_sucesso != "undefined") { %>
+                    <br>
+                    <div class="alert alert-success" role="alert">
+                        <%= msg_sucesso %>
+                    </div>
+                <% }%>
+
+                <% if(typeof msg_erro != "undefined") {%>
+                    <br>
+                    <div class="alert alert-danger">
+                        <%= msg_erro %> <b> <%= email %></b>
+                    </div>
+                <% } %>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<%- include("../../partials/footer.ejs") %>
