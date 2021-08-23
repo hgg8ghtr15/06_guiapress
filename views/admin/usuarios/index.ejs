@@ -20,7 +20,7 @@
                 <tr>
                     <td> <%= usuario.id %> </td>
                     <td> <%= usuario.email %> </td>
-                    <td></td>
+                    <td> <%= usuario.senha %> </td>
                     <td>
                         <a href="/admin/usuario/edit/<%= usuario.id %>" class="btn btn-info">EDITAR</a>
                         <form method="post" class="d-inline" action="/admin/usuario/deletar" onsubmit="confirmarDelecao(event, this)">

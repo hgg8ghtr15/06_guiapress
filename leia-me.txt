@@ -10,3 +10,8 @@ npm install --save slugify
 Banco de dados
 alter user "root"@"localhost" identified with mysql_native_password by "J6t2hybt26@"
 
+Hash de senha app
+npm install --save bcryptjs
+
+session
+npm install express-session --save

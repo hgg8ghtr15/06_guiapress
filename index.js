@@ -1,6 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const connection = require('./database/database')
+const session = require('express-session')
+// const adminautenticacao = require('./middewares/adminautenticacao')
 
 const categories_Controller = require('./categories/Categories_Controller')
 const articles_Controller = require('./articles/Articles_Controller')
@@ -16,6 +18,18 @@ const Usuario = require('./user/user')
  * view engine
  */
 app.set('view engine', 'ejs')
+
+/**
+ *  Session
+ *  1 - 1000 max age
+ *  Redis
+ * */
+
+app.use(session({
+  secret:"cadkaçldskncçkdncçakdioidhioar8r9jr9qk]~r´lq]´r-h89ah8asdj8",
+  cookie:{maxAge: 60000}
+}))
+
 
 /**
  * Static
@@ -46,6 +60,23 @@ app.use("/", categories_Controller)
 app.use("/", articles_Controller)
 app.use("/", usuario_Controller)
 
+app.get("/session", (request, response) =>{
+  request.session.treinamento = "Formação node"
+  request.session.ano = 2019
+  request.session.email = "fabio lucas marconi"
+  request.session.user = {
+    username:"fabio",
+    email:"teste@gmail.com",
+    id:3
+  }
+  return response.send("Sessão Criado")
+})
+
+app.get("/leitura", (request, response) =>{
+  return response.json({
+    user : request.session.user
+  })
+})
 
 app.get("/", (request, response) => {
   const admin = "admin"

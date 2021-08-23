@@ -4,7 +4,9 @@ const Category = require("../categories/Category")
 const Article = require("./Article")
 const slugify = require("slugify")
 
-router.get('/article/index', (request, response) => {
+const adminautenticacao = require("../middewares/adminautenticacao")
+
+router.get('/article/index', adminautenticacao, (request, response) => {
   Article.findAll(
     {include:[{model: Category}]} //faz o join na tabela para exibir na views
   ).then(Artigles =>{

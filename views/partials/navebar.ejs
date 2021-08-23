@@ -1,11 +1,9 @@
 <nav class="navbar navbar-light bg-light">
-    <ul class="nav">
+    <ul class="nav mr-auto">
         <li class="nav-item">
             <a href="/" class="nav-link">Home</a>
         </li>
-        <li class="nav-item">
 
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="nav_artigos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Artigos
@@ -19,7 +17,6 @@
                     <% }) %>
                 <% } %>
             </div>
-
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="nav_categoria" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,6 +39,12 @@
             <div class="dropdown-menu" aria-labelledby="nav_categoria">
                 <a href="/admin/usuarios" class="nav-link">Admin</a>
             </div>
+        </li>
+    </ul>
+
+    <ul class="nav ml-auto">
+        <li class="nav-item">
+            <a href="/logout" class="nav-link">Sair</a>
         </li>
     </ul>
 </nav>
